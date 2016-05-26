@@ -1,0 +1,9 @@
+---
+states:
+  - label: bound
+    coords:
+      - [1.0]
+
+  - label: unbound
+    coords:
+      - [7.0]

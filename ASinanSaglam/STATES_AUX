@@ -1,0 +1,9 @@
+---
+states:
+  - label: bound_aux 
+    coords:
+      - [1.0, 25.0]
+
+  - label: unbound_aux
+    coords:
+      - [19.0, 31.0]
