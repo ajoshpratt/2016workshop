@@ -1,44 +1,55 @@
 # Created by: Ali Sinan Saglam
-# For 2015 WESTPA Workshop, analysis tools 
+# For 2015 WESTPA Workshop, on analysis tools 
 
-set -e
+# Setup environment
+module load westpa/15acf5d3
 
-module purge
-module load queue
-module load westpa/1.0-gcc-4.8.2
-module load westpa/anaconda-1.9.1-gcc-4.8.2
-module load gromacs
+### Part 2: Rate constant calculations ### 
 
-# Note:
-# For every tool I suggest using -h option if you get stuck or want to learn
-# more, tools are well documented! 
+# Assingment tool
+# Bin and state definition yaml file 
+# w_assign
 
-### Part 3: Tracing continuous pathways ###
+# usage: w_assign [-h] [-r RCFILE] [--quiet | --verbose | --debug] [--version]
+#                [--max-queue-length MAX_QUEUE_LENGTH] [-W WEST_H5FILE]
+#                [--bins-from-system | --bins-from-expr BINS_FROM_EXPR | --bins-from-function BINS_FROM_FUNCTION | --bins-from-file BINFILE]
+#                [--construct-dataset CONSTRUCT_DATASET | --dsspecs DSSPEC [DSSPEC ...]]
+#                [--states STATEDEF [STATEDEF ...] | --states-from-file
+#                STATEFILE | --states-from-function STATEFUNC] [-o OUTPUT]
+#                [--serial | --parallel | --work-manager WORK_MANAGER]
+#                [--n-workers N_WORKERS]
 
-# Tracing tool: w_trace 
+w_assign -W west.h5 --bins-from-file BINS --states-from-file STATES -o assign.h5 --construct-dataset assignment.pull_data_assign
 
-# w_trace traces one walker backwards in history finding 
-# it's parents. Only needs the h5 file from the simulation
+# Kinetics calculation tool
+# w_kinetics
 
-# usage: w_trace [-h] [-r RCFILE] [--quiet | --verbose | --debug] [--version]
-#               [-W WEST_H5FILE] [-d DSNAME] [--output-pattern OUTPUT_PATTERN]
-#               [-o OUTPUT]
-#               N_ITER:SEG_ID [N_ITER:SEG_ID ...]
+# usage: w_kinetics trace [-h] [-W WEST_H5FILE] [--first-iter N_ITER]
+#                        [--last-iter N_ITER] [-a ASSIGNMENTS] [-o OUTPUT]
+#                        [--no-compression]
 
-# This is going to trace walker 10 from iteration 120
-if [[ -e trajs.h5 ]];then
-  rm trajs.h5
-fi
-w_trace -W west.h5 120:10
+w_kinetics trace -W west.h5 -a assign.h5 -o kinetics.h5
 
-# A sample bash script to pull files from the walker tree (traj_segs)
-# I also pull the initial state coordinate for convenience if you would
-# like to take a look at the trajectory in your favorite visualization
-# software, it's called init.gro
-./trj_trace.sh traj_120_10_trace.txt
+# Kinetic averaging tool
+# w_kinavg 
 
-# Now stitch together the xtc files
-# This particular part uses GROMACS tool trjcat to stitch together the 
-# trajectory 
-cd traced_traj
-trjcat -f *xtc -o full_traj.xtc -cat
+# usage: w_kinavg trace [-h] [-W WEST_H5FILE] [--first-iter N_ITER]
+#                      [--last-iter N_ITER] [--step-iter STEP] [-a ASSIGNMENTS]
+#                      [-k KINETICS] [-o OUTPUT] [--alpha ALPHA]
+#                      [--autocorrel-alpha ACALPHA] [--nsets NSETS]
+#                      [-e {cumulative,blocked,none}]
+#                      [--window-frac WINDOW_FRAC]
+
+w_kinavg trace -W west.h5 -a assign.h5 -k kinetics.h5 -o kinavg.h5 | tee kinavg.txt
+
+
+# Now defining the state from arbitrary data sets
+# The following commands reassign the data, including the end to end distance into bins
+# as defined in BINS_AUX and with states as defined in STATES_AUX which is then
+# used to calculate rate constants.
+
+#w_assign -W west.h5 --bins-from-file BINS_AUX --states-from-file STATES_AUX -o assign_aux.h5 --construct-dataset assignment.pull_data
+
+#w_kinetics trace -W west.h5 -a assign_aux.h5 -o kinetics_aux.h5
+
+#w_kinavg trace -W west.h5 -a assign_aux.h5 -k kinetics_aux.h5 -o kinavg_aux.h5 | tee kinavg_aux.txt

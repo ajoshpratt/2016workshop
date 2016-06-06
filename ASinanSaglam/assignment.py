@@ -7,10 +7,14 @@ def pull_data(n_iter, iter_group):
     the tool.
     '''
 
-    auxdata = iter_group['auxdata']['end_to_end_dist'][...]
     pcoord  = iter_group['pcoord'][:,:,0]
     
-    data = numpy.dstack( (pcoord, auxdata) )
+    data = pcoord[:,:,numpy.newaxis]
+
+    #auxdata = iter_group['auxdata']['end_to_end_dist'][...]
+    #pcoord  = iter_group['pcoord'][:,:,0]
+    
+    #data = numpy.dstack( (pcoord, auxdata) )
 
     return data
 
