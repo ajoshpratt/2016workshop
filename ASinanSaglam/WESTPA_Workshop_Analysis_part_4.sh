@@ -1,4 +1,5 @@
-# Created by: Ali Sinan Saglam
+# Created and edited by: Ali Sinan Saglam
+# Script by: Justin Spiriti
 # For 2015 WESTPA Workshop, analysis tools 
 
 set -e
@@ -22,20 +23,19 @@ module load namd/2.11
 #               [-o OUTPUT]
 #               N_ITER:SEG_ID [N_ITER:SEG_ID ...]
 
-# This is going to trace walker 10 from iteration 120
-if [[ -e trajs.h5 ]];then
-  rm trajs.h5
-fi
-w_trace -W west.h5 120:10
+# This is going to trace walker 10 from iteration 100
+w_trace -W west.h5 100:10
 
 # A sample bash script to pull files from the walker tree (traj_segs)
 # I also pull the initial state coordinate for convenience if you would
 # like to take a look at the trajectory in your favorite visualization
 # software, it's called init.gro
-./trj_trace.sh traj_120_10_trace.txt
+trace="traj_100_10_trace.txt"
 
-# Now stitch together the xtc files
-# This particular part uses GROMACS tool trjcat to stitch together the 
-# trajectory 
-cd traced_traj
-trjcat -f *xtc -o full_traj.xtc -cat
+output="chig-100-10.dcd"
+freq=1
+
+files=`awk  '{if (NF==0) next; if (substr($0,1,1)=="#") next; iter=$1; seg=$2; if (iter<=0) next; printf("traj_segs/%06d/%06d/seg.dcd ",iter,seg)}' $trace`
+#echo $files
+psf=namd_config/chig.psf
+~/catdcd/catdcd -o $output -otype dcd -s $psf -stype psf -stride $freq $files
