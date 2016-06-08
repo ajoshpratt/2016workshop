@@ -78,9 +78,15 @@ class RMSDTool(object):
                 if self.args.backbone:
                     atomname = split[2] 
                     if atomname in self.backboneres:
-                        list_of_coordinates.append(split[5:8])
+                        x = lines[30:38]
+                        y = lines[38:46]
+                        z = lines[46:54]
+                        list_of_coordinates.append([x,y,z])
                 else:
-                   list_of_coordinates.append(split[5:8])
+                   x = lines[30:38]
+                   y = lines[38:46]
+                   z = lines[46:54]
+                   list_of_coordinates.append([x,y,z])
         pdbfile.close()
         return numpy.array(list_of_coordinates, dtype=numpy.dtype(float))
     
