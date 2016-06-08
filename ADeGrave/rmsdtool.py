@@ -23,7 +23,7 @@ class RMSDTool(object):
         Initialize class. Parse arguments, open files, prepare the reference 
         structure.
         '''
-        # Atom names for backbone residues; Python list
+        # Atom names for backbone residues; Python sets are much faster for "in" 
         self.backboneres = {'N', 'C', "CA", 'O', 'OT1'} 
 
         # Parse command line arguments.
