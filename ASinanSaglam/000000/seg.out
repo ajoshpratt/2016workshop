@@ -1,0 +1,172 @@
+Charm++: standalone mode (not using charmrun)
+Converse/Charm++ Commit ID: v6.4.0-beta1-0-g5776d21
+CharmLB> Load balancer assumes all CPUs are same.
+Charm++> Running on 1 unique compute nodes (64-way SMP).
+Charm++> cpu topology info is gathered in 0.012 seconds.
+Info: NAMD 2.9 for Linux-x86_64-multicore
+Info: 
+Info: Please visit http://www.ks.uiuc.edu/Research/namd/
+Info: for updates, documentation, and support information.
+Info: 
+Info: Please cite Phillips et al., J. Comp. Chem. 26:1781-1802 (2005)
+Info: in all publications reporting results obtained with NAMD.
+Info: 
+Info: Based on Charm++/Converse 60400 for multicore-linux64-iccstatic
+Info: Built Mon Apr 30 14:00:48 CDT 2012 by jim on naiad.ks.uiuc.edu
+Info: 1 NAMD  2.9  Linux-x86_64-multicore  1    n113.dcb.private.net  spiriti
+Info: Running on 1 processors, 1 nodes, 1 physical nodes.
+Info: CPU topology information available.
+Info: Charm++/Converse parallel runtime startup completed at 0.018343 s
+Info: 38.0195 MB of memory in use based on /proc/self/stat
+Info: Configuration file is md-continue.conf
+Info: Working in the current directory /net/roos/home4/zuckerman/spiriti/westpa-workshop/chig_namd_new4/traj_segs/000001/000000
+TCL: Suspending until startup complete.
+Info: Changed directory to .
+Warning: The parameter fullElectFrequency now defaults to nonbondedFreq (1) rather than stepsPerCycle.
+Info: SIMULATION PARAMETERS:
+Info: TIMESTEP               2
+Info: NUMBER OF STEPS        0
+Info: STEPS PER CYCLE        250
+Info: LOAD BALANCER  Centralized
+Info: LOAD BALANCING STRATEGY  New Load Balancers -- DEFAULT
+Info: LDB PERIOD             50000 steps
+Info: FIRST LDB TIMESTEP     1250
+Info: LAST LDB TIMESTEP     -1
+Info: LDB BACKGROUND SCALING 1
+Info: HOM BACKGROUND SCALING 1
+Info: MIN ATOMS PER PATCH    40
+Info: VELOCITY FILE          parent.vel
+Info: CENTER OF MASS MOVING INITIALLY? NO
+Info: DIELECTRIC             1
+Info: EXCLUDE                SCALED ONE-FOUR
+Info: 1-4 ELECTROSTATICS SCALED BY 1
+Info: MODIFIED 1-4 VDW PARAMETERS WILL BE USED
+Info: DCD FILENAME           seg.dcd
+Info: DCD FREQUENCY          500
+Info: DCD FIRST STEP         500
+Info: NO EXTENDED SYSTEM TRAJECTORY OUTPUT
+Info: NO VELOCITY DCD OUTPUT
+Info: NO FORCE DCD OUTPUT
+Info: OUTPUT FILENAME        seg
+Info: NO RESTART FILE
+Info: CUTOFF                 999
+Info: PAIRLIST DISTANCE      1000
+Info: PAIRLIST SHRINK RATE   0.01
+Info: PAIRLIST GROW RATE     0.01
+Info: PAIRLIST TRIGGER       0.3
+Info: PAIRLISTS PER CYCLE    2
+Info: PAIRLISTS ENABLED
+Info: MARGIN                 0
+Info: HYDROGEN GROUP CUTOFF  2.5
+Info: PATCH DIMENSION        1002.5
+Info: ENERGY OUTPUT STEPS    500
+Info: CROSSTERM ENERGY INCLUDED IN DIHEDRAL
+Info: TIMING OUTPUT STEPS    5000
+Info: GBIS GENERALIZED BORN IMPLICIT SOLVENT ACTIVE
+Info: GBIS SOLVENT DIELECTRIC: 78.5
+Info: GBIS PROTEIN DIELECTRIC: 1
+Info: GBIS COULOMB RADIUS OFFSET: 0.09 Ang
+Info: GBIS ION CONCENTRATION: 0.2 M
+Info: GBIS DEBYE SCREENING LENGTH: 6.82308 Ang
+Info: GBIS DELTA: 1
+Info: GBIS BETA: 0.8
+Info: GBIS GAMMA: 4.85
+Info: GBIS BORN RADIUS CUTOFF: 15 Ang
+Info: GBIS MAX BORN RADIUS: 30 Ang
+Info: LANGEVIN DYNAMICS ACTIVE
+Info: LANGEVIN TEMPERATURE   300
+Info: LANGEVIN DAMPING COEFFICIENT IS 10 INVERSE PS
+Info: LANGEVIN DYNAMICS APPLIED TO HYDROGENS
+Info: FULL ELECTROSTATIC EVALUATION FREQUENCY      1
+Info: USING VERLET I (r-RESPA) MTS SCHEME.
+Info: C1 SPLITTING OF LONG RANGE ELECTROSTATICS
+Info: PLACING ATOMS IN PATCHES BY HYDROGEN GROUPS
+Info: RANDOM NUMBER SEED     305499344
+Info: USE HYDROGEN BONDS?    NO
+Info: COORDINATE PDB         parent.pdb
+Info: STRUCTURE FILE         chig.psf
+Info: PARAMETER file: CHARMM format! 
+Info: PARAMETERS             par_all22_prot_na.prm
+Info: USING ARITHMETIC MEAN TO COMBINE L-J SIGMA PARAMETERS
+
+Warning: DUPLICATE ANGLE ENTRY FOR CT3-CT1-CT3
+PREVIOUS VALUES  k=53.35  theta0=114 k_ub=8 r_ub=2.561
+   USING VALUES  k=58.35  theta0=113.5 k_ub=11.16 r_ub=2.561
+Info: SUMMARY OF PARAMETERS:
+Info: 260 BONDS
+Info: 670 ANGLES
+Info: 1180 DIHEDRAL
+Info: 73 IMPROPER
+Info: 8 CROSSTERM
+Info: 166 VDW
+Info: 0 VDW_PAIRS
+Info: 0 NBTHOLE_PAIRS
+Info: TIME FOR READING PSF FILE: 0.0176899
+Info: TIME FOR READING PDB FILE: 0.000971079
+Info: 
+Info: ****************************
+Info: STRUCTURE SUMMARY:
+Info: 138 ATOMS
+Info: 141 BONDS
+Info: 249 ANGLES
+Info: 369 DIHEDRALS
+Info: 21 IMPROPERS
+Info: 8 CROSSTERMS
+Info: 0 EXCLUSIONS
+Info: 414 DEGREES OF FREEDOM
+Info: 77 HYDROGEN GROUPS
+Info: 4 ATOMS IN LARGEST HYDROGEN GROUP
+Info: 77 MIGRATION GROUPS
+Info: 4 ATOMS IN LARGEST MIGRATION GROUP
+Info: TOTAL MASS = 1080.07 amu
+Info: TOTAL CHARGE = -2 e
+Info: *****************************
+Info: 
+Info: Entering startup at 0.0929511 s, 143.473 MB of memory in use
+Info: Startup phase 0 took 8.10623e-05 s, 143.473 MB of memory in use
+Info: Startup phase 1 took 0.00131178 s, 143.602 MB of memory in use
+Info: Startup phase 2 took 7.60555e-05 s, 143.602 MB of memory in use
+Info: Startup phase 3 took 4.1008e-05 s, 143.602 MB of memory in use
+Info: PATCH GRID IS 1 BY 2 BY 1
+Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
+Info: REMOVING COM VELOCITY 0.859759 -0.234383 0.96995
+Info: LARGEST PATCH (1) HAS 74 ATOMS
+Info: Startup phase 4 took 0.00111008 s, 143.602 MB of memory in use
+Info: Startup phase 5 took 5.38826e-05 s, 143.602 MB of memory in use
+Info: Startup phase 6 took 4.41074e-05 s, 143.602 MB of memory in use
+LDB: Central LB being created...
+Info: Startup phase 7 took 6.38962e-05 s, 143.602 MB of memory in use
+Info: CREATING 18 COMPUTE OBJECTS
+Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
+Info: NONBONDED TABLE SIZE: 1537 POINTS
+Info: ABSOLUTE IMPRECISION IN VDWA TABLE FORCE: 2.54895e-57 AT 995.606
+Info: ABSOLUTE IMPRECISION IN VDWB TABLE ENERGY: 1.92593e-34 AT 995.606
+Info: ABSOLUTE IMPRECISION IN VDWB TABLE FORCE: 5.39993e-38 AT 995.606
+Info: Startup phase 8 took 0.0026741 s, 145.242 MB of memory in use
+Info: Startup phase 9 took 6.29425e-05 s, 145.242 MB of memory in use
+Info: Startup phase 10 took 6.50883e-05 s, 145.574 MB of memory in use
+Info: Finished startup at 0.0985351 s, 145.574 MB of memory in use
+
+TCL: Running for 500 steps
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG
+
+ENERGY:       0        28.5735        82.9650        43.5877         2.7160           -366.9609         1.0707         0.0000         0.0000       104.7946           -103.2534       254.7587      -208.0480      -102.1175       254.7587
+
+LDB: ============= START OF LOAD BALANCING ============== 1.15803
+LDB: ============== END OF LOAD BALANCING =============== 1.15806
+LDB: =============== DONE WITH MIGRATION ================ 1.15819
+ENERGY:     500        60.4304        84.4750        44.8087         4.4347           -362.8264         3.3953         0.0000         0.0000       117.5511            -47.7311       285.7702      -165.2823       -42.3711       293.5390
+
+OPENING COORDINATE DCD FILE
+WRITING COORDINATES TO DCD FILE AT STEP 500
+The last position output (seq=500) takes 0.128 seconds, 145.844 MB of memory in use
+WRITING EXTENDED SYSTEM TO OUTPUT FILE AT STEP 500
+WRITING COORDINATES TO OUTPUT FILE AT STEP 500
+CLOSING COORDINATE DCD FILE
+The last position output (seq=-2) takes 0.357 seconds, 145.844 MB of memory in use
+WRITING VELOCITIES TO OUTPUT FILE AT STEP 500
+The last velocity output (seq=-2) takes 0.310 seconds, 145.844 MB of memory in use
+====================================================
+
+WallClock: 3.264854  CPUTime: 3.264854  Memory: 145.843750 MB
+Program finished.
