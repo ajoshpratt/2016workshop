@@ -9,9 +9,7 @@ cd $WEST_SIM_ROOT/namd_config/
 
 echo "Hi there!" > get-pcoord-output
 # Get progress coordinate
-/usr/local/bin/vmd -e $WEST_SIM_ROOT/namd_config/measure-rmsd-init.tcl >& get-pcoord-vmd.out #|| exit 1
-gawk '{print $2}' rmsd.out > $WEST_PCOORD_RETURN 
-#rm -f rmsd.temp
+python $WEST_SIM_ROOT/rmsdtool.py --reference $WEST_SIM_ROOT/namd_config/reference.pdb --backbone --coords $WEST_SIM_ROOT/namd_config/seg_initial.pdb &> $WEST_PCOORD_RETURN
 
 if [ -n "$SEG_DEBUG" ] ; then
     head -v $WEST_PCOORD_RETURN

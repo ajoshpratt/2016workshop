@@ -43,13 +43,7 @@ $NAMD md.conf > seg.out
 
 #Use VMD to do the analysis to find the progress coordinate.  
 #ln -sv $WEST_SIM_ROOT/namd_config/reference.pdb .
-python rmsdtool.py --reference $WEST_SIM_ROOT/namd_config/reference.pdb --backbone --coords 0000.coor 0001.coor &> $WEST_PCOORD_RETURN
-## DEBUG ##
-python rmsdtool.py --reference $WEST_SIM_ROOT/namd_config/reference.pdb --backbone --coords 0000.coor 0001.coor &> DEBUG
-cat DEBUG
-
-
-
+python $WEST_SIM_ROOT/rmsdtool.py --reference $WEST_SIM_ROOT/namd_config/reference.pdb --backbone --coords 0000.coor 0001.coor &> $WEST_PCOORD_RETURN
 
 if [ -n "$SEG_DEBUG" ] ; then
     head -v $WEST_PCOORD_RETURN
