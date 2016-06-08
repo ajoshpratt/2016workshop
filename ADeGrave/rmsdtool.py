@@ -24,8 +24,8 @@ class RMSDTool(object):
         structure.
         '''
         # Atom names for backbone residues; Python sets are much faster for "in" 
-        #self.backboneres = {'N', 'C', "CA", 'O', 'OT1'} 
-        self.backboneres = {'N', 'C', "CA"} 
+        #self.backboneatoms = {'N', 'C', "CA", 'O', 'OT1'} 
+        self.backboneatoms = {'N', 'C', "CA"} 
 
         # Parse command line arguments.
         self._parse_args()
@@ -52,10 +52,15 @@ class RMSDTool(object):
                             help='Extract coordinates for calculating RMSD '
                                  'from the file(s) specified by COORD_PATHS. '
                                  'The file(s) should be in the PDB format.')
+
+        backboneatomlist = list(self.backboneatoms) 
+        helpstr = "Include only backbone atoms ("
+        for atom in backboneatomlist[:-1]:
+           helpstr += "{:s}, ".format(atom)
+        helpstr += "{:s}) in the RMSD calculation.".format(backboneatomlist[-1])
         parser.add_argument('--backbone', dest='backbone',
                             action='store_true', 
-                            help='Include only backbone atoms (N, Ca, C, and O'
-                                 ' in the RMSD calculation')
+                            help=helpstr)
         self.args = parser.parse_args()
 
         if self.args.coord_paths is None:
@@ -77,7 +82,7 @@ class RMSDTool(object):
                 split = line.split()
                 if self.args.backbone:
                     atomname = split[2] 
-                    if atomname in self.backboneres:
+                    if atomname in self.backboneatoms:
                         x = lines[30:38]
                         y = lines[38:46]
                         z = lines[46:54]
