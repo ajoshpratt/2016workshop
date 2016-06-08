@@ -24,7 +24,8 @@ class RMSDTool(object):
         structure.
         '''
         # Atom names for backbone residues; Python sets are much faster for "in" 
-        self.backboneres = {'N', 'C', "CA", 'O', 'OT1'} 
+        #self.backboneres = {'N', 'C', "CA", 'O', 'OT1'} 
+        self.backboneres = {'N', 'C', "CA"} 
 
         # Parse command line arguments.
         self._parse_args()
@@ -77,7 +78,6 @@ class RMSDTool(object):
                 if self.args.backbone:
                     atomname = split[2] 
                     if atomname in self.backboneres:
-                        print(line)
                         list_of_coordinates.append(split[5:8])
                 else:
                    list_of_coordinates.append(split[5:8])
