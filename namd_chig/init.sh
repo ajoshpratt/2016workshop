@@ -13,4 +13,4 @@ mkdir seg_logs traj_segs istates
 
 BSTATE_ARGS="--bstate extended,1,seg_initial.pdb"
 
-w_init $BSTATE_ARGS  --segs-per-state 4 "$@" --debug
+w_init $BSTATE_ARGS  --segs-per-state 4 "$@"
