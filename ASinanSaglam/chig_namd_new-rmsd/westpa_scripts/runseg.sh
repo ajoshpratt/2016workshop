@@ -42,7 +42,6 @@ sed -e "s/:seed;/$seed/g" $WEST_SIM_ROOT/namd_config/md-continue.conf > md.conf
 $NAMD md.conf > seg.out
 
 #Use VMD to do the analysis to find the progress coordinate.  
-#ln -sv $WEST_SIM_ROOT/namd_config/reference.pdb .
 python $WEST_SIM_ROOT/rmsdtool.py --reference $WEST_SIM_ROOT/namd_config/reference.pdb --backbone --coords 0000.coor 0001.coor &> $WEST_PCOORD_RETURN
 
 if [ -n "$SEG_DEBUG" ] ; then
