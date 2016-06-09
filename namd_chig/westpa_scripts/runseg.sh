@@ -9,9 +9,12 @@ cd $WEST_SIM_ROOT
 
 # Set up the run
 mkdir -pv $WEST_CURRENT_SEG_DATA_REF || exit 1
-cd $WEST_CURRENT_SEG_DATA_REF || exit 1
-ln -sv $WEST_SIM_ROOT/namd_config/par_all22_prot_na.prm .
-ln -sv $WEST_SIM_ROOT/namd_config/chig.psf              .
+
+mkdir -pv $NODELOC/$WEST_CURRENT_SEG_DATA_REF || exit 1
+
+cd $NODELOC/$WEST_CURRENT_SEG_DATA_REF || exit 1
+cp $WEST_SIM_ROOT/namd_config/par_all22_prot_na.prm .
+cp $WEST_SIM_ROOT/namd_config/chig.psf              .
 #substitute the ":seed;" marker in the original md-continue.conf with an actual seed
 #need to make sure it is not over 2^31-1, otherwise it gets interpreted as a negative number
 
@@ -21,14 +24,14 @@ sed -e "s/:seed;/$seed/g" $WEST_SIM_ROOT/namd_config/md-continue.conf > md.conf
  case $WEST_CURRENT_SEG_INITPOINT_TYPE in
      SEG_INITPOINT_CONTINUES)
          # A continuation from a prior segment
-         ln -sv $WEST_PARENT_DATA_REF/seg.coor  ./parent.pdb
-         ln -sv $WEST_PARENT_DATA_REF/seg.vel   ./parent.vel
+         cp $WEST_PARENT_DATA_REF/seg.coor  ./parent.pdb
+         cp $WEST_PARENT_DATA_REF/seg.vel   ./parent.vel
      ;;
  
      SEG_INITPOINT_NEWTRAJ)
          # Initiation of a new trajectory; $WEST_PARENT_DATA_REF contains the reference to the
-         ln -sv $WEST_SIM_ROOT/namd_config/seg_initial.pdb  ./parent.pdb 
-         ln -sv $WEST_SIM_ROOT/namd_config/seg_initial.vel     ./parent.vel 
+         cp $WEST_SIM_ROOT/namd_config/seg_initial.pdb  ./parent.pdb 
+         cp $WEST_SIM_ROOT/namd_config/seg_initial.vel  ./parent.vel 
          ls -l
      ;;
  
@@ -50,3 +53,8 @@ fi
 
 # Clean up
 rm -f *.conf *.py  seg_restart.* *.prm *.temp *.pdb  *.psf
+tar cvf seg.tar *
+cp seg.tar $WEST_CURRENT_SEG_DATA_REF
+rm -f *.tar
+cd $WEST_CURRENT_SEG_DATA_REF
+tar xvf seg.tar

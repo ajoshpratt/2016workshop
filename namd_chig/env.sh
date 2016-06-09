@@ -4,6 +4,7 @@ module load anaconda
 module load westpa
 module load namd
 export WEST_ROOT=/opt/packages/westpa
+export NODELOC=$XDG_RUNTIME_DIR
 
 # Set environment variable for NAMD for convenience
 export NAMD=$(which namd2)
