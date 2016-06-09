@@ -2,7 +2,8 @@
 # For 2015 WESTPA Workshop, on analysis tools 
 
 # Setup environment
-module load westpa/15acf5d3
+#module load westpa/15acf5d3
+source env.sh
 
 ### Part 2: Rate constant calculations ### 
 
