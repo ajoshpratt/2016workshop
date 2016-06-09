@@ -1,9 +1,12 @@
 # 2016workshop
 Group repository for the 2016 Workshop
 
+Hello 2016 Workshop users!
 
-Hi all,
+On Bridges, please do the following:
 
-For now, please just create a directory with your name and upload to it.  Thank you!
+cd namd_chig
+./init.sh
+sbatch runwe_bridges.sh
 
-- Adam
+Have a great session!
