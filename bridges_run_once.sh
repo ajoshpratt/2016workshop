@@ -1,3 +1,5 @@
-ssh-keygen || echo "Didn't work!" && exit 1
-cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys  || echo "Didn't work!" && exit 1
+#! /bin/bash -l
+
+ssh-keygen
+cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 echo "Completed!"
