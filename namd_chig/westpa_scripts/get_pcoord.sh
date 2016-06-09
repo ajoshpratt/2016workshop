@@ -1,4 +1,6 @@
-#!/bin/bash -v
+#! /bin/bash
+
+source $WEST_SIM_ROOT/env.sh
 
 if [ -n "$SEG_DEBUG" ] ; then
     set -x
