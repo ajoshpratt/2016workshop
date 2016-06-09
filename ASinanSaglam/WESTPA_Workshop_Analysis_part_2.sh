@@ -1,7 +1,7 @@
 # Created by: Ali Sinan Saglam
 # For 2016 WESTPA Workshop, analysis tools 
 
-module load westpa/15acf5d3
+source env.sh
 
 # Note:
 # For every tool I suggest using -h option if you get stuck or want to learn

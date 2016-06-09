@@ -2,10 +2,7 @@
 # Script by: Justin Spiriti
 # For 2015 WESTPA Workshop, analysis tools 
 
-set -e
-
-module load westpa/15acf5d3
-module load namd/2.11
+source env.sh
 
 # Note:
 # For every tool I suggest using -h option if you get stuck or want to learn
@@ -32,10 +29,7 @@ w_trace -W west.h5 100:10
 # software, it's called init.gro
 trace="traj_100_10_trace.txt"
 
-output="chig-100-10.dcd"
-freq=1
-
 files=`awk  '{if (NF==0) next; if (substr($0,1,1)=="#") next; iter=$1; seg=$2; if (iter<=0) next; printf("traj_segs/%06d/%06d/seg.dcd ",iter,seg)}' $trace`
-#echo $files
-psf=namd_config/chig.psf
-~/catdcd/catdcd -o $output -otype dcd -s $psf -stype psf -stride $freq $files
+
+mkdir dcds
+cp $files dcds/.
