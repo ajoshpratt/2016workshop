@@ -1,12 +1,14 @@
 #!/bin/bash
 #SBATCH -J CHIG.WE
 #SBATCH -p RM
-#SBATCH -n 1
-#SBATCH -t 01:00:00
+#SBATCH -n 140
+#SBATCH -t 07:00:00
 
 set -x
 cd $SLURM_SUBMIT_DIR
 source env.sh || exit 1
+
+env | sort
 
 cd $WEST_SIM_ROOT
 SERVER_INFO=$WEST_SIM_ROOT/west_zmq_info-$SLURM_JOBID.json
@@ -35,7 +37,7 @@ fi
 # start clients, with the proper number of cores on each
 
 for node in $(scontrol show hostname $SLURM_NODELIST); do
-    ssh $node $PWD/node.sh $SLURM_SUBMIT_DIR $SLURM_JOBID $node --work-manager=zmq --zmq-mode=client --n-workers=16 --zmq-read-host-info=$SERVER_INFO --zmq-comm-mode=tcp &
+    ssh -o StrictHostKeyChecking=no $node $PWD/node.sh $SLURM_SUBMIT_DIR $SLURM_JOBID $node --work-manager=zmq --zmq-mode=client --n-workers=28 --zmq-read-host-info=$SERVER_INFO --zmq-comm-mode=tcp &
 done
 
 
