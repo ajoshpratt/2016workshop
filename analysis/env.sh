@@ -3,6 +3,12 @@
 
 set -e
 
-export WEST_ROOT=~/bin/westpa
-export PATH=$PATH:$WEST_ROOT/bin
-export PATH=$PATH:~/bin
+BRIDGES=$(hostname|grep "bridges")
+if [[ -n $BRIDGES ]];then
+  module load westpa
+  WT_ROOT="/opt/packages/westpa/lib/west_tools"
+else
+  export WEST_ROOT=~/bin/westpa
+  export PATH=$PATH:$WEST_ROOT/bin
+  export PATH=$PATH:~/bin
+fi

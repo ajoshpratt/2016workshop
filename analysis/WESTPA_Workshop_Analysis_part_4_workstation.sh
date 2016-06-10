@@ -11,7 +11,6 @@ source env.sh
 ### Part 4: Tracing continuous pathways ###
 
 # A sample bash script to concatenate dcd files
-
 output="chig-100-10.dcd"
 freq=1
 
