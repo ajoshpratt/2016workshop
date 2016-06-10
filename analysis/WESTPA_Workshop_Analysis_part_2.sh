@@ -3,6 +3,10 @@
 
 source env.sh
 
+# Bridges/2016 Workshop specific note:
+# If you want to run these on the workstations please copy your west.h5 file in the analysis folder
+# and copy the DCD folder you generated to the analysis folder as well
+
 # Note:
 # For every tool I suggest using -h option if you get stuck or want to learn
 # more, tools are well documented! 
