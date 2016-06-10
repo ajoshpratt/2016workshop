@@ -1,7 +1,7 @@
 # Created and edited by: Ali Sinan Saglam
 # For 2015 WESTPA Workshop, analysis tools 
 
-set -e
+set -x
 
 BRIDGES=$(hostname|grep "bridges")
 if [[ -n $BRIDGES ]];then
