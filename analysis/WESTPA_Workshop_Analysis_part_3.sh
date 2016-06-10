@@ -4,6 +4,9 @@
 # Setup environment
 #module load westpa/15acf5d3
 source env.sh
+if [[ -n $BRIDGES ]];then 
+  cd ../namd_chig
+fi
 
 ### Part 3: Rate constant calculations ### 
 

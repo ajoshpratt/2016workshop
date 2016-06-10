@@ -3,6 +3,9 @@
 
 # Setup environment
 source env.sh
+if [[ -n $BRIDGES ]];then
+  cd ../namd_chig
+fi
 
 ### Part 3: Rate constant calculations ### 
 # Post analysis # 

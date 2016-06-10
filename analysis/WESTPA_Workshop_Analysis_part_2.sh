@@ -2,6 +2,9 @@
 # For 2016 WESTPA Workshop, analysis tools 
 
 source env.sh
+if [[ -n $BRIDGES ]];then
+ cd ../namd_chig
+fi
 
 # Note:
 # For every tool I suggest using -h option if you get stuck or want to learn
