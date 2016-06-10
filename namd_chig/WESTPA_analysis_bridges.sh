@@ -8,7 +8,7 @@ source env.sh
 # For every tool I suggest using -h option if you get stuck or want to learn
 # more, tools are well documented! 
 
-### Part 3: Tracing continuous pathways ###
+### Part 4: Tracing continuous pathways ###
 
 # Tracing tool: w_trace 
 

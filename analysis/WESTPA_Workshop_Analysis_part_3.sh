@@ -5,7 +5,7 @@
 #module load westpa/15acf5d3
 source env.sh
 
-### Part 2: Rate constant calculations ### 
+### Part 3: Rate constant calculations ### 
 
 # Assingment tool
 # Bin and state definition yaml file 

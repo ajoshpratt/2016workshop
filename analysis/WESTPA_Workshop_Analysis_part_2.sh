@@ -7,7 +7,7 @@ source env.sh
 # For every tool I suggest using -h option if you get stuck or want to learn
 # more, tools are well documented! 
 
-### Part 2: Free Energy Landscape ### 
+### Part 1: Free Energy Landscape ### 
 
 # Histogramming tool: w_pdist
 
