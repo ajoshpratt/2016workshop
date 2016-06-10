@@ -11,7 +11,6 @@ source env.sh
 ### Part 4: Tracing continuous pathways ###
 
 if [[ -n $BRIDGES ]];then
-  cd ../namd_chig
 
   # Tracing tool: w_trace 
   
@@ -24,7 +23,10 @@ if [[ -n $BRIDGES ]];then
   #               N_ITER:SEG_ID [N_ITER:SEG_ID ...]
   
   # This is going to trace walker 10 from iteration 100
-  w_trace -W west.h5 100:10
+  if [[ -e trajs.h5 ]];then
+    rm trajs.h5
+  fi
+  w_trace -W ../namd_chig/west.h5 100:10
   
   # A sample bash script to pull files from the walker tree (traj_segs)
   # I also pull the initial state coordinate for convenience if you would
@@ -34,8 +36,17 @@ if [[ -n $BRIDGES ]];then
   
   files=`awk  '{if (NF==0) next; if (substr($0,1,1)=="#") next; iter=$1; seg=$2; if (iter<=0) next; printf("traj_segs/%06d/%06d/seg.dcd ",iter,seg)}' $trace`
   
-  mkdir dcds
-  cp $files dcds/.
+  if [[ ! -e dcds ]];then
+    mkdir dcds
+  fi 
+
+  cd ../namd_chig
+  ctr=1
+  for file in $files;do
+    echo $file
+    cp $file ../analysis/dcds/${ctr}.dcd
+    ctr=$((ctr+1))
+  done
 else
   # A sample bash script to concatenate dcd files
   output="chig-100-10.dcd"

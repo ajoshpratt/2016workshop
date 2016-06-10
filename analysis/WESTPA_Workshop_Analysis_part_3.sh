@@ -4,9 +4,6 @@
 # Setup environment
 #module load westpa/15acf5d3
 source env.sh
-if [[ -n $BRIDGES ]];then 
-  cd ../namd_chig
-fi
 
 ### Part 3: Rate constant calculations ### 
 
@@ -23,7 +20,11 @@ fi
 #                [--serial | --parallel | --work-manager WORK_MANAGER]
 #                [--n-workers N_WORKERS]
 
-w_assign -W west.h5 --bins-from-file BINS --states-from-file STATES -o assign.h5 --construct-dataset assignment.pull_data_assign
+if [[ -n $BRIDGES ]];then 
+  w_assign -W ../namd_chig/west.h5 --bins-from-file BINS --states-from-file STATES -o assign.h5 --construct-dataset assignment.pull_data_assign
+else
+  w_assign -W west.h5 --bins-from-file BINS --states-from-file STATES -o assign.h5 --construct-dataset assignment.pull_data_assign
+fi
 
 # Kinetics calculation tool
 # w_kinetics
@@ -32,7 +33,11 @@ w_assign -W west.h5 --bins-from-file BINS --states-from-file STATES -o assign.h5
 #                        [--last-iter N_ITER] [-a ASSIGNMENTS] [-o OUTPUT]
 #                        [--no-compression]
 
-w_kinetics trace -W west.h5 -a assign.h5 -o kinetics.h5
+if [[ -n $BRIDGES ]];then 
+  w_kinetics trace -W ../namd_chig/west.h5 -a assign.h5 -o kinetics.h5
+else
+  w_kinetics trace -W west.h5 -a assign.h5 -o kinetics.h5
+fi
 
 # Kinetic averaging tool
 # w_kinavg 
@@ -44,8 +49,11 @@ w_kinetics trace -W west.h5 -a assign.h5 -o kinetics.h5
 #                      [-e {cumulative,blocked,none}]
 #                      [--window-frac WINDOW_FRAC]
 
-w_kinavg trace -W west.h5 -a assign.h5 -k kinetics.h5 -o kinavg.h5 | tee kinavg.txt
-
+if [[ -n $BRIDGES ]];then 
+  w_kinavg trace -W ../namd_chig/west.h5 -a assign.h5 -k kinetics.h5 -o kinavg.h5 | tee kinavg.txt
+else
+  w_kinavg trace -W west.h5 -a assign.h5 -k kinetics.h5 -o kinavg.h5 | tee kinavg.txt
+fi
 
 # Now defining the state from arbitrary data sets
 # The following commands reassign the data, including the end to end distance into bins

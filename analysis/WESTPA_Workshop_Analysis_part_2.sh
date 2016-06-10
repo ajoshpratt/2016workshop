@@ -2,9 +2,6 @@
 # For 2016 WESTPA Workshop, analysis tools 
 
 source env.sh
-if [[ -n $BRIDGES ]];then
- cd ../namd_chig
-fi
 
 # Note:
 # For every tool I suggest using -h option if you get stuck or want to learn
@@ -32,7 +29,11 @@ fi
 # and being able to histogram those. This way you can keep track of auxiliary data during your simulation
 # This is done by defining a python function and supplying the function to the option --construct-dataset
 # We will also change the binning as defined in the system.py and instead bin the auxiliary dataset 
-w_pdist -W west.h5 --construct-dataset assignment.pull_data -o pdist.h5 -b 200
+if [[ -n $BRIDGES ]];then
+  w_pdist -W ../namd_chig/west.h5 --construct-dataset assignment.pull_data -o pdist.h5 -b 200
+else
+  w_pdist -W west.h5 --construct-dataset assignment.pull_data -o pdist.h5 -b 200
+fi
 
 # Plotting the histograms
 # 1D plotting and basic plotting controls
