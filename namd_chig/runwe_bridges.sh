@@ -3,6 +3,7 @@
 #SBATCH -p RM
 #SBATCH -n 140
 #SBATCH -t 07:00:00
+#SBATCH --reservation=biophysics
 
 set -x
 cd $SLURM_SUBMIT_DIR
